@@ -2,8 +2,10 @@
 name = "willc"
 version = "0.1.0"
 description = "My version of the `wc` tool"
+license = "MIT"
 authors = ["WillDenby <119456795+WillDenby@users.noreply.github.com>"]
 readme = "README.md"
+repository = "https://github.com/WillDenby/willc"
 
 [tool.poetry.scripts]
 willc = "willc.main:app"
@@ -21,3 +23,7 @@ pytest = "^8.1.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+
+
