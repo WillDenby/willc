@@ -3,6 +3,7 @@ from willc.main import app
 
 runner = CliRunner()
 
+
 def test_bytes_option_single_file():
     with runner.isolated_filesystem():
         with open("testfile.txt", "w") as f:
@@ -48,16 +49,12 @@ def test_no_options_uses_default():
         with open("testfile.txt", "w") as f:
             f.write("Hello World")
         result = runner.invoke(app, ["testfile.txt"])
-    assert (
-        "0\t2\t11\ttestfile.txt" in result.stdout
-    ) 
+    assert "0\t2\t11\ttestfile.txt" in result.stdout
 
 
 def test_stdin_input():
     result = runner.invoke(app, input="Hello World")
-    assert (
-        "0\t2\t11\tstdin" in result.stdout
-    )  
+    assert "0\t2\t11\tstdin" in result.stdout
 
 
 def test_multiple_files():
@@ -69,6 +66,4 @@ def test_multiple_files():
         result = runner.invoke(app, ["file1.txt", "file2.txt", "-w"])
     assert "1\tfile1.txt" in result.stdout
     assert "1\tfile2.txt" in result.stdout
-    assert (
-        "2\ttotal" in result.stdout
-    )  
+    assert "2\ttotal" in result.stdout
