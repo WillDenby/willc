@@ -1,10 +1,10 @@
-import pytest
 from typer.testing import CliRunner
-from willc.main import app  # Ensure to replace 'your_script_name' with the actual name of your script file
+from willc.main import app
 
 runner = CliRunner()
 
 # Test Cases
+
 
 def test_bytes_option_single_file():
     with runner.isolated_filesystem():
@@ -13,12 +13,14 @@ def test_bytes_option_single_file():
         result = runner.invoke(app, ["testfile.txt", "-c"])
     assert "11\ttestfile.txt" in result.stdout
 
+
 def test_lines_option_single_file():
     with runner.isolated_filesystem():
         with open("testfile.txt", "w") as f:
             f.write("Hello\nWorld")
         result = runner.invoke(app, ["testfile.txt", "-l"])
     assert "1\ttestfile.txt" in result.stdout
+
 
 def test_words_option_single_file():
     with runner.isolated_filesystem():
@@ -27,12 +29,14 @@ def test_words_option_single_file():
         result = runner.invoke(app, ["testfile.txt", "-w"])
     assert "2\ttestfile.txt" in result.stdout
 
+
 def test_multibyte_option_single_file():
     with runner.isolated_filesystem():
         with open("testfile.txt", "w") as f:
             f.write("こんにちは")  # Writing some multibyte characters
         result = runner.invoke(app, ["testfile.txt", "-m"])
     assert "5\ttestfile.txt" in result.stdout
+
 
 def test_combined_options_single_file():
     with runner.isolated_filesystem():
@@ -41,16 +45,23 @@ def test_combined_options_single_file():
         result = runner.invoke(app, ["testfile.txt", "-l", "-w", "-c"])
     assert "1\t4\t25\ttestfile.txt" in result.stdout
 
+
 def test_no_options_uses_default():
     with runner.isolated_filesystem():
         with open("testfile.txt", "w") as f:
             f.write("Hello World")
         result = runner.invoke(app, ["testfile.txt"])
-    assert "0\t2\t11\ttestfile.txt" in result.stdout  # Assuming the default is to print lines, words, and bytes
+    assert (
+        "0\t2\t11\ttestfile.txt" in result.stdout
+    )  # Assuming the default is to print lines, words, and bytes
+
 
 def test_stdin_input():
     result = runner.invoke(app, input="Hello World")
-    assert "0\t2\t11\tstdin" in result.stdout  # Default to stdin if no files are specified
+    assert (
+        "0\t2\t11\tstdin" in result.stdout
+    )  # Default to stdin if no files are specified
+
 
 def test_multiple_files():
     with runner.isolated_filesystem():
@@ -61,4 +72,6 @@ def test_multiple_files():
         result = runner.invoke(app, ["file1.txt", "file2.txt", "-w"])
     assert "1\tfile1.txt" in result.stdout
     assert "1\tfile2.txt" in result.stdout
-    assert "2\ttotal" in result.stdout  # Checking totals in the output for multiple files
+    assert (
+        "2\ttotal" in result.stdout
+    )  # Checking totals in the output for multiple files
