@@ -1,7 +1,6 @@
 """A Command Line Tool that replicates the built-in Unix `wc` tool."""
 
 # Standard library imports
-
 import os
 import sys
 import locale
