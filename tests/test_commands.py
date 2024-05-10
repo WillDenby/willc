@@ -3,9 +3,6 @@ from willc.main import app
 
 runner = CliRunner()
 
-# Test Cases
-
-
 def test_bytes_option_single_file():
     with runner.isolated_filesystem():
         with open("testfile.txt", "w") as f:
@@ -53,14 +50,14 @@ def test_no_options_uses_default():
         result = runner.invoke(app, ["testfile.txt"])
     assert (
         "0\t2\t11\ttestfile.txt" in result.stdout
-    )  # Assuming the default is to print lines, words, and bytes
+    ) 
 
 
 def test_stdin_input():
     result = runner.invoke(app, input="Hello World")
     assert (
         "0\t2\t11\tstdin" in result.stdout
-    )  # Default to stdin if no files are specified
+    )  
 
 
 def test_multiple_files():
@@ -74,4 +71,4 @@ def test_multiple_files():
     assert "1\tfile2.txt" in result.stdout
     assert (
         "2\ttotal" in result.stdout
-    )  # Checking totals in the output for multiple files
+    )  

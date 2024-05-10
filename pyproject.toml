@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "willc"
-version = "0.1.0"
+version = "0.1.1"
 description = "My version of the `wc` tool"
 license = "MIT"
 authors = ["WillDenby <119456795+WillDenby@users.noreply.github.com>"]
