@@ -5,10 +5,10 @@ My version of the `wc` tool, completing the first of John Crickett's [Coding Cha
 Install it with `pipx`:
 
 ```
-pipx install willc
+pipx install https://github.com/WillDenby/willc/raw/main/dist/willc-0.1.1-py3-none-any.whl
 ```
 
-Here's a lightly adapted `man` page! (Since it's built with `typer`, you can just use the `--help` option, however!)
+Here's a lightly adapted `man` page! (Since it's built with `typer`, you can access this with the `--help` option, however!)
 
 **NAME**
 
